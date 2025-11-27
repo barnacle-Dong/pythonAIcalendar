@@ -1,11 +1,14 @@
 import calendar
 schedules={}     #일정 딕셔너리 
                  # 딕셔너리 저장 예시 {2025-11-27 :[일정 내용들]<-- 리스트 형태}
-def show_calendar():            #월 단위 달력 출력
+def show_month_calendar(year, month):            # 월 단위 달력 출력
     tc=calendar.TextCalendar(firstweekday=6)
-    ch_year = int(input(" 달력의 년도를 입력하세요 "))
-    ch_month = int(input(" 달력의 달을 입력하세요 "))
-    print(tc.formatmonth(ch_year, ch_month))
+    ch_year = year
+    ch_month = month
+    result = tc.formatmonth(ch_year, ch_month)
+    print(result)   # debug
+
+    return result
 
 def add_schedule():       #일정추가
     date=input("날짜를 입력하세요: (예:2025-11-27)")
@@ -49,3 +52,10 @@ def delete_schedule():  #일정 삭제
     if len(schedules[date])==0:
          del schedules[date]         # 날짜의 일정이 사라지면 해당 날짜의 리스트 삭제
       
+if __name__ == "__main__":
+     '''
+     show_calendar()
+     add_schedule()
+     view_schedule_date()
+     '''
+     delete_schedule()
