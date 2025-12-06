@@ -13,9 +13,9 @@
 
 
 ### cli command line list
-**Documented commands (type help <topic>):**  
-EOF | clear | exit | save | show_month | show_year | view  
-add | delete | help | show_day | show_week update  
+> **Documented commands (type help <topic>):**  
+> EOF | clear | exit | save | show_month | show_year | view  
+> add | delete | help | show_day | show_week update  
 
 - **help**  
   - List available commands with `help` or detailed help with `help <cmd>`.
