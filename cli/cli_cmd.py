@@ -212,6 +212,8 @@ class CalendarCLI(cmd.Cmd):
 
     do_EOF = do_exit   # Ctrl + D
 
+def run_cli():
+    CalendarCLI().cmdloop()
 
 if __name__ == "__main__":
-    CalendarCLI().cmdloop()
+    run_cli()
