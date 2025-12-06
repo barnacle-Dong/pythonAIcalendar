@@ -11,14 +11,11 @@
 2. `main.py` 실행  
    - 샘플로 포함된 `calendar_data.json`을 사용하고 싶지 않다면 삭제 후 실행
 
----
 
 ### cli command line list
-**Documented commands (type help <topic>):**
-EOF | clear | exit | save | show_month | show_year | view 
-add | delete | help | show_day | show_week update
-
----
+**Documented commands (type help <topic>):**  
+EOF | clear | exit | save | show_month | show_year | view  
+add | delete | help | show_day | show_week update  
 
 - **help**  
   - List available commands with `help` or detailed help with `help <cmd>`.
