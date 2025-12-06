@@ -12,29 +12,29 @@ cli/cli_cmd.py 의 MODEL 변수 안의 모델명 사용
 이때, 샘플로 같이 있는 calendar_data.json을 사용하고 싶지 않다면 지우고 실행
 
 ### cli command line list
-> Documented commands (type help <topic>):
-    ========================================
-    EOF  clear   exit  save      show_month  show_year  view
-    add  delete  help  show_day  show_week   update
+Documented commands (type help <topic>):
+========================================
+EOF  clear   exit  save      show_month  show_year  view
+add  delete  help  show_day  show_week   update
 
  - help
-        | List available commands with "help" or detailed help with "help cmd".
+       - | List available commands with "help" or detailed help with "help cmd".
  - EOF
-        | 종료 (자동 저장)
+       - | 종료 (자동 저장)
  - claer
-        | 화면 지우기: clear
+       - | 화면 지우기: clear
  - exit
-        | 종료 (자동 저장)
+       - | 종료 (자동 저장)
  - save
-        | 파일 저장
+       - | 파일 저장
  - show_day, show_week, show_month, show_year
-        | 일간 정보 출력: show_day [YYYY MM DD]
-        | 주간 달력 정보 출력: show_week [YYYY MM DD]
-        | 월간 달력 출력: show_month [YYYY MM]
-        | 연간 달력 출력: show_year [YYYY]
+       - | 일간 정보 출력: show_day [YYYY MM DD]
+       - | 주간 달력 정보 출력: show_week [YYYY MM DD]
+       - | 월간 달력 출력: show_month [YYYY MM]
+       - | 연간 달력 출력: show_year [YYYY]
  - add, delete, update
-        | 일정 추가: add YYYY-MM-DD
-        | 일정 삭제: delete YYYY-MM-DD
-        | 일정 수정: update YYYY-MM-DD
+       - | 일정 추가: add YYYY-MM-DD
+       - | 일정 삭제: delete YYYY-MM-DD
+       - | 일정 수정: update YYYY-MM-DD
  - view
-        | 일정 조회: view day|week|month YYYY-MM-DD [ai]
+       - | 일정 조회: view day|week|month YYYY-MM-DD [ai]
