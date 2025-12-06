@@ -1,0 +1,6 @@
+Ollama
+calendar
+datetime
+json
+cmd
+requests
