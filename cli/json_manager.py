@@ -34,7 +34,7 @@ class CalendarStorage:
             json.dump(self.data, f, ensure_ascii=False, indent=2)
 
     # ----------------------------
-    # 일정 CRUD
+    # 일정 추가, 수정, 삭제
     # ----------------------------
     def add_event(self, date_str, title, time, memo, priority, category):
         if date_str not in self.data["days"]:

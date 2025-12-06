@@ -1,14 +1,10 @@
 import calendar
 import datetime
-
-
 '''
 년 단위 달력
 월 단위 달력
 주 단위 달력
 '''
-# cli main
-
 
 def get_year_str_calendar(year=None):   
     if year is None:
@@ -50,7 +46,6 @@ def get_week_calendar(year=None, month=None, day=None):
     d= datetime.date(year,month,day)
     iso_year, iso_week, iso_weekday = d.isocalendar()
     
-
     return iso_year,d.month, iso_week, iso_weekday
 
 def get_day_str_calendar(year=None, month=None, day=None):
@@ -60,7 +55,6 @@ def get_day_str_calendar(year=None, month=None, day=None):
     month = month if month is not None else today.month
     day= day if day is not None else today.day
     date_str=datetime.date(year, month, day).strftime("%Y-%m-%d")
-    
     
     return  date_str
 
@@ -73,8 +67,6 @@ def get_day_obj_calendar(year=None, month=None, day=None):
     date_obj=datetime.date(year, month, day)
 
     return date_obj
-
-        
 
 
 if __name__ == "__main__":

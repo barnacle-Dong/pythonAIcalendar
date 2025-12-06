@@ -8,12 +8,13 @@
 ## 실행 방법
 0. Windows 환경 기준  
 1. Ollama 설치 후 로그인 → 클라우드 모델 설정 → 백그라운드 실행  
+- 현재 프로젝트에서는 gpt-oss:120b-cloud 모델을 사용 중
 2. `main.py` 실행  
-   - 샘플로 포함된 `calendar_data.json`을 사용하고 싶지 않다면 삭제 후 실행
+- 샘플로 포함된 `calendar_data.json`을 사용하고 싶지 않다면 삭제 후 실행
 
 
 ### cli command line list
-> **Documented commands (type help <topic>):**  
+> Documented commands (type help [topic]):  
 > ==============================================
 > EOF | clear | exit | save | show_month | show_year | view  
 > add | delete | help | show_day | show_week update  

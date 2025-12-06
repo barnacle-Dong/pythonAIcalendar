@@ -3,7 +3,7 @@ import os
 import datetime
 from cli.json_manager import CalendarStorage
 import cli.calendar_core as cal_view
-from cli.ai_ollama import analyze_schedule  # AI 분석기
+from cli.ai_ollama import analyze_schedule
 
 
 class CalendarCLI(cmd.Cmd):
@@ -15,7 +15,7 @@ class CalendarCLI(cmd.Cmd):
         self.store = CalendarStorage("calendar_data.json")  # 내부 JSON dict 보유
 
     # =========================
-    # 0) 화면 지우기 기능
+    # 0) claer 기능
     # =========================
     def do_clear(self, arg):
         """화면 지우기: clear"""
@@ -85,7 +85,7 @@ class CalendarCLI(cmd.Cmd):
         title = input("제목: ")
         time = input("시간: ")
         memo = input("메모: ")
-        priority = int(input("중요도(1=높음): ") or 1)
+        priority = int(input("중요도(1(높음)~5(낮음)): ") or 1)
         category = input("카테고리(운동/공부/일상 등): ") or "일상"
 
         self.store.add_event(date_str, title, time, memo, priority, category)
