@@ -1,9 +1,9 @@
 import cmd
 import os
 import datetime
-from json_manager import CalendarStorage
-import calendar_core as cal_view
-from ai_ollama import analyze_schedule  # AI 분석기
+from cli.json_manager import CalendarStorage
+import cli.calendar_core as cal_view
+from cli.ai_ollama import analyze_schedule  # AI 분석기
 
 
 class CalendarCLI(cmd.Cmd):
