@@ -75,8 +75,7 @@ class CalendarCLI(cmd.Cmd):
     # =========================
     def do_add(self, arg):
         """
-        일정 추가
-        사용: add YYYY-MM-DD
+        일정 추가: add YYYY-MM-DD
         """
         date_str = arg.strip()
         if not date_str:
