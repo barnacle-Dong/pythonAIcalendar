@@ -77,8 +77,7 @@ def get_day_obj_calendar(year=None, month=None, day=None):
         
 
 
-if __name__ == "__main__":  # 메인 파일일 경우 실행_
-    
+if __name__ == "__main__":
     print(get_year_str_calendar())
     print(get_year_obj_calendar())
     print(get_month_str_calendar())

@@ -1,154 +1,164 @@
 import json
 import os
 from datetime import datetime, date
-import calendar
 
 
 class CalendarStorage:
-    # 초기화 메서드
     def __init__(self, path="calendar_data.json"):
         self.path = path
-        self.data = self._load_or_init()
+        self.data = {
+            "days": {},
+            "weeks": {},
+            "months": {}
+        }
+        self._load()
+        self._sync_all()
 
-    def _load_or_init(self):
-        if not os.path.exists(self.path):
-            initial = {
-                "days": {},
-                "weeks": {},
-                "months": {},
-                "triggers": {
-                    "daily": {},
-                    "weekly": {},
-                    "monthly": {}
-                }
-            }
-            self._save(initial)
-            return initial
+    # ----------------------------
+    # 저장 / 로드
+    # ----------------------------
+    def _load(self):
+        if os.path.exists(self.path):
+            try:
+                with open(self.path, "r", encoding="utf-8") as f:
+                    self.data = json.load(f)
+            except Exception:
+                print("[경고] JSON 파싱 실패. 새 구조로 초기화합니다.")
 
-        with open(self.path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        # 스키마 보정
+        for day in self.data.get("days", {}).values():
+            day.setdefault("events", [])
 
-    def _save(self, data=None):
-        if data is None:
-            data = self.data
+    def _save(self):
         with open(self.path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
+            json.dump(self.data, f, ensure_ascii=False, indent=2)
 
-    # ===========================================================
-    # DAY FUNCTIONS
-    # ===========================================================
-
-    def add_event(self, date_str: str, title: str, time="", memo="", priority=1, category="일상"):
-        """ 일정 추가 """
+    # ----------------------------
+    # 일정 CRUD
+    # ----------------------------
+    def add_event(self, date_str, title, time, memo, priority, category):
         if date_str not in self.data["days"]:
             self.data["days"][date_str] = {"events": [], "ai_comment": ""}
 
-        event = {
+        self.data["days"][date_str]["events"].append({
             "title": title,
             "time": time,
             "memo": memo,
             "priority": priority,
             "category": category
-        }
+        })
 
-        self.data["days"][date_str]["events"].append(event)
-
-        # 트리거 세팅
-        self._trigger_daily(date_str)
-        self._trigger_week(date_str)
-        self._trigger_month(date_str)
-
+        self._sync_all()
         self._save()
 
-    def update_event(self, date_str: str, old_title: str, new_data: dict):
-        """ 일정 수정 """
+    def update_event(self, date_str, old_title, new_data):
         if date_str not in self.data["days"]:
             return False
 
-        updated = False
-        for event in self.data["days"][date_str]["events"]:
-            if event["title"] == old_title:
-                event.update(new_data)
-                updated = True
-                break
+        events = self.data["days"][date_str]["events"]
+        for e in events:
+            if e["title"] == old_title:
+                e.update(new_data)
+                self._sync_all()
+                self._save()
+                return True
+        return False
 
-        if updated:
-            self._trigger_daily(date_str)
-            self._trigger_week(date_str)
-            self._trigger_month(date_str)
-            self._save()
-
-        return updated
-
-    def remove_event(self, date_str: str, title: str):
-        """ 일정 삭제 """
+    def remove_event(self, date_str, title):
         if date_str not in self.data["days"]:
             return False
 
-        before = len(self.data["days"][date_str]["events"])
-        self.data["days"][date_str]["events"] = [
-            e for e in self.data["days"][date_str]["events"] if e["title"] != title
-        ]
-        after = len(self.data["days"][date_str]["events"])
+        events = self.data["days"][date_str]["events"]
+        updated = [e for e in events if e["title"] != title]
 
-        if before != after:
-            self._trigger_daily(date_str)
-            self._trigger_week(date_str)
-            self._trigger_month(date_str)
-            self._save()
+        if len(updated) == len(events):
+            return False
 
-        return before != after
+        self.data["days"][date_str]["events"] = updated
+        self._sync_all()
+        self._save()
+        return True
 
-    def get_day(self, date_str: str):
-        return self.data["days"].get(date_str, {"events": [], "ai_comment": ""})
+    # ----------------------------
+    # 주 / 월 재계산 (ai_comment 보존)
+    # ----------------------------
+    def _sync_all(self):
+        self._recalculate_weeks()
+        self._recalculate_months()
 
-    # ===========================================================
-    # WEEK & MONTH HANDLING + 자동 결산
-    # ===========================================================
+    def _recalculate_weeks(self):
+        old = self.data.get("weeks", {})
+        weeks = {}
 
-    def _date_to_week_id(self, date_str):
+        for date_str, info in self.data["days"].items():
+            y, m, d = map(int, date_str.split("-"))
+            dt = date(y, m, d)
+            iso_year, iso_week, _ = dt.isocalendar()
+
+            wkey = f"{iso_year}-W{iso_week:02d}"
+
+            if wkey not in weeks:
+                weeks[wkey] = {
+                    "events": [],
+                    "ai_comment": old.get(wkey, {}).get("ai_comment", "")
+                }
+
+            for e in info["events"]:
+                obj = e.copy()
+                obj["date"] = date_str
+                weeks[wkey]["events"].append(obj)
+
+        self.data["weeks"] = weeks
+
+    def _recalculate_months(self):
+        old = self.data.get("months", {})
+        months = {}
+
+        for date_str, info in self.data["days"].items():
+            y, m, _ = map(int, date_str.split("-"))
+            mkey = f"{y}-{m:02d}"
+
+            if mkey not in months:
+                months[mkey] = {
+                    "events": [],
+                    "ai_comment": old.get(mkey, {}).get("ai_comment", "")
+                }
+
+            for e in info["events"]:
+                obj = e.copy()
+                obj["date"] = date_str
+                months[mkey]["events"].append(obj)
+
+        self.data["months"] = months
+
+    # ----------------------------
+    # 조회용
+    # ----------------------------
+    def get_day(self, date_str):
+        return self.data["days"].get(date_str, {"events": []})
+
+    def get_week(self, date_str):
         y, m, d = map(int, date_str.split("-"))
         dt = date(y, m, d)
-        year, week, _ = dt.isocalendar()
-        return f"{year}-W{week}"
+        iso_year, iso_week, _ = dt.isocalendar()
+        wkey = f"{iso_year}-W{iso_week:02d}"
 
-    def _date_to_month_id(self, date_str):
-        y, m, d = date_str.split("-")
-        return f"{y}-{m}"
+        raw = self.data["weeks"].get(wkey, {"events": []})
+        result = {}
+        for e in raw["events"]:
+            d = e["date"]
+            result.setdefault(d, {"events": []})
+            result[d]["events"].append(e)
+        return result
 
-    def _trigger_daily(self, date_str):
-        self.data["triggers"]["daily"][date_str] = True
+    def get_month(self, date_str):
+        y, m, _ = map(int, date_str.split("-"))
+        mkey = f"{y}-{m:02d}"
 
-    def _trigger_week(self, date_str):
-        week_id = self._date_to_week_id(date_str)
-        self.data["triggers"]["weekly"][week_id] = True
-
-    def _trigger_month(self, date_str):
-        month_id = self._date_to_month_id(date_str)
-        self.data["triggers"]["monthly"][month_id] = True
-
-    # ===========================================================
-    # SUMMARY SAVE / GET
-    # ===========================================================
-
-    def save_week_summary(self, week_id: str, summary: dict, ai_comment=""):
-        self.data["weeks"][week_id] = {
-            "summary": summary,
-            "ai_comment": ai_comment
-        }
-        self.data["triggers"]["weekly"][week_id] = False
-        self._save()
-
-    def get_week(self, week_id: str):
-        return self.data["weeks"].get(week_id, {})
-
-    def save_month_summary(self, month_id: str, summary: dict, ai_comment=""):
-        self.data["months"][month_id] = {
-            "summary": summary,
-            "ai_comment": ai_comment
-        }
-        self.data["triggers"]["monthly"][month_id] = False  
-        self._save()
-
-    def get_month(self, month_id: str):
-        return self.data["months"].get(month_id, {})
+        raw = self.data["months"].get(mkey, {"events": []})
+        result = {}
+        for e in raw["events"]:
+            d = e["date"]
+            result.setdefault(d, {"events": []})
+            result[d]["events"].append(e)
+        return result
