@@ -2,6 +2,7 @@ import json
 import datetime
 import requests
 
+MODEL = "gpt-oss:120b-cloud"    # Ollama Cloud Model name
 
 def ask_ai(prompt: str) -> str:
     """Ollama 모델 호출"""
@@ -9,7 +10,7 @@ def ask_ai(prompt: str) -> str:
         response = requests.post(
             "http://localhost:11434/api/generate",
             json={
-                "model": "gpt-oss:120b-cloud",
+                "model": MODEL,
                 "prompt": prompt,
                 "stream": False
             },
