@@ -60,7 +60,7 @@ class CalendarStorage:
         # 스키마 보정
         for day in self.data.get("days", {}).values():
             day.setdefault("events", [])
-            day.setdefault("ai_comment", "")
+            # day.setdefault("ai_comment", "")
 
     # ----------------------------
     # JSON 저장
@@ -74,7 +74,8 @@ class CalendarStorage:
     # ----------------------------
     def add_event(self, date_str, title, time, memo, priority, category):
         if date_str not in self.data["days"]:
-            self.data["days"][date_str] = {"events": [], "ai_comment": ""}
+            self.data["days"][date_str] = {"events": []}
+            # self.data["days"][date_str] = {"events": [], "ai_comment": ""}
 
         self.data["days"][date_str]["events"].append({
             "title": title,
@@ -136,7 +137,7 @@ class CalendarStorage:
             if key not in weeks:
                 weeks[key] = {
                     "events": [],
-                    "ai_comment": old.get(key, {}).get("ai_comment", "")
+                    # "ai_comment": old.get(key, {}).get("ai_comment", "")
                 }
 
             # 이벤트 복사 + 날짜 포함
@@ -158,7 +159,7 @@ class CalendarStorage:
             if key not in months:
                 months[key] = {
                     "events": [],
-                    "ai_comment": old.get(key, {}).get("ai_comment", "")
+                    # "ai_comment": old.get(key, {}).get("ai_comment", "")
                 }
 
             for e in day_info["events"]:
