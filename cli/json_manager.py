@@ -10,7 +10,7 @@ class CalendarStorage:
             os.path.dirname(os.path.abspath(__file__))
         )
         self.path = os.path.join(project_root, path)
-        
+
         self.data = {
             "days": {},
             "weeks": {},
@@ -116,7 +116,7 @@ class CalendarStorage:
         return True
 
     # ----------------------------
-    # 주 / 월 재계산 (ai_comment 보존)
+    # 주 / 월 재계산
     # ----------------------------
     def _sync_all(self):
         self._recalc_weeks()
