@@ -5,6 +5,10 @@
 - Ollama 0.13.1 사용  
 - `cli/cli_cmd.py` 의 `MODEL` 변수 안의 모델명 사용
 
+## requirement.txt
+- Ollama 앱
+- requests
+
 ## 실행 방법
 0. Windows 환경 기준  
 1. Ollama 설치 후 로그인 → 클라우드 모델 설정 → 백그라운드 실행  
