@@ -158,7 +158,7 @@ class CalendarCLI(cmd.Cmd):
             data = self.store.get_day(date_str)
             print(f"\n[일정 - {date_str}]")
             for e in data["events"]:
-                print(f"- ({e['priority']}) {e['title']} / {e['time']} / {e['category']}")
+                print(f"- ({e['priority']}) {e['title']} / {e['time']} / {e['category']} / {e['memo']}")
 
             if ai_flag:
                 print("\nAI 분석 중...\n")

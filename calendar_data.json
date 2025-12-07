@@ -3,291 +3,41 @@
     "2025-12-01": {
       "events": [
         {
-          "title": "CS 기말 준비",
-          "time": "14:00",
-          "memo": "6장~8장 집중 공부",
+          "title": "운동",
+          "time": "13:00",
+          "memo": "등, 어깨 위주",
           "priority": 2,
-          "category": "공부"
-        },
-        {
-          "title": "가벼운 운동",
-          "time": "18:00",
-          "memo": "헬스 1시간",
-          "priority": 0,
           "category": "운동"
         }
-      ],
-      "ai_comment": ""
-    },
-    "2025-12-03": {
-      "events": [
-        {
-          "title": "팀플 회의",
-          "time": "16:00",
-          "memo": "기획 마무리",
-          "priority": 2,
-          "category": "과제"
-        },
-        {
-          "title": "영어 스피킹 스터디",
-          "time": "20:00",
-          "memo": "",
-          "priority": 1,
-          "category": "공부"
-        }
-      ],
-      "ai_comment": ""
-    },
-    "2025-12-06": {
-      "events": [
-        {
-          "title": "심프 cli.py 마무리",
-          "time": "15:00",
-          "memo": "오늘 끝내야함",
-          "priority": 1,
-          "category": "과제"
-        },
-        {
-          "title": "test",
-          "time": "12:00",
-          "memo": "테스트 일정",
-          "priority": 0,
-          "category": "기타"
-        }
-      ],
-      "ai_comment": ""
-    },
-    "2025-12-07": {
-      "events": [
-        {
-          "title": "심프 과제 마감",
-          "time": "23:50",
-          "memo": "",
-          "priority": 1,
-          "category": "과제"
-        }
-      ],
-      "ai_comment": ""
-    },
-    "2025-12-15": {
-      "events": [
-        {
-          "title": "DB 프로젝트 제출",
-          "time": "23:59",
-          "memo": "업로드 잊지 말기",
-          "priority": 2,
-          "category": "과제"
-        }
-      ],
-      "ai_comment": ""
-    },
-    "2025-12-28": {
-      "events": [
-        {
-          "title": "연말 회고",
-          "time": "15:00",
-          "memo": "올해 돌아보기",
-          "priority": 0,
-          "category": "개인"
-        },
-        {
-          "title": "새해 계획 작성",
-          "time": "17:00",
-          "memo": "",
-          "priority": 0,
-          "category": "개인"
-        }
-      ],
-      "ai_comment": ""
+      ]
     }
   },
   "weeks": {
     "2025-W49": {
       "events": [
         {
-          "title": "CS 기말 준비",
-          "time": "14:00",
-          "memo": "6장~8장 집중 공부",
+          "title": "운동",
+          "time": "13:00",
+          "memo": "등, 어깨 위주",
           "priority": 2,
-          "category": "공부",
-          "date": "2025-12-01"
-        },
-        {
-          "title": "가벼운 운동",
-          "time": "18:00",
-          "memo": "헬스 1시간",
-          "priority": 0,
           "category": "운동",
           "date": "2025-12-01"
-        },
-        {
-          "title": "팀플 회의",
-          "time": "16:00",
-          "memo": "기획 마무리",
-          "priority": 2,
-          "category": "과제",
-          "date": "2025-12-03"
-        },
-        {
-          "title": "영어 스피킹 스터디",
-          "time": "20:00",
-          "memo": "",
-          "priority": 1,
-          "category": "공부",
-          "date": "2025-12-03"
-        },
-        {
-          "title": "심프 cli.py 마무리",
-          "time": "15:00",
-          "memo": "오늘 끝내야함",
-          "priority": 1,
-          "category": "과제",
-          "date": "2025-12-06"
-        },
-        {
-          "title": "test",
-          "time": "12:00",
-          "memo": "테스트 일정",
-          "priority": 0,
-          "category": "기타",
-          "date": "2025-12-06"
-        },
-        {
-          "title": "심프 과제 마감",
-          "time": "23:50",
-          "memo": "",
-          "priority": 1,
-          "category": "과제",
-          "date": "2025-12-07"
         }
-      ],
-      "ai_comment": ""
-    },
-    "2025-W51": {
-      "events": [
-        {
-          "title": "DB 프로젝트 제출",
-          "time": "23:59",
-          "memo": "업로드 잊지 말기",
-          "priority": 2,
-          "category": "과제",
-          "date": "2025-12-15"
-        }
-      ],
-      "ai_comment": ""
-    },
-    "2025-W52": {
-      "events": [
-        {
-          "title": "연말 회고",
-          "time": "15:00",
-          "memo": "올해 돌아보기",
-          "priority": 0,
-          "category": "개인",
-          "date": "2025-12-28"
-        },
-        {
-          "title": "새해 계획 작성",
-          "time": "17:00",
-          "memo": "",
-          "priority": 0,
-          "category": "개인",
-          "date": "2025-12-28"
-        }
-      ],
-      "ai_comment": ""
+      ]
     }
   },
   "months": {
     "2025-12": {
       "events": [
         {
-          "title": "CS 기말 준비",
-          "time": "14:00",
-          "memo": "6장~8장 집중 공부",
+          "title": "운동",
+          "time": "13:00",
+          "memo": "등, 어깨 위주",
           "priority": 2,
-          "category": "공부",
-          "date": "2025-12-01"
-        },
-        {
-          "title": "가벼운 운동",
-          "time": "18:00",
-          "memo": "헬스 1시간",
-          "priority": 0,
           "category": "운동",
           "date": "2025-12-01"
-        },
-        {
-          "title": "팀플 회의",
-          "time": "16:00",
-          "memo": "기획 마무리",
-          "priority": 2,
-          "category": "과제",
-          "date": "2025-12-03"
-        },
-        {
-          "title": "영어 스피킹 스터디",
-          "time": "20:00",
-          "memo": "",
-          "priority": 1,
-          "category": "공부",
-          "date": "2025-12-03"
-        },
-        {
-          "title": "심프 cli.py 마무리",
-          "time": "15:00",
-          "memo": "오늘 끝내야함",
-          "priority": 1,
-          "category": "과제",
-          "date": "2025-12-06"
-        },
-        {
-          "title": "test",
-          "time": "12:00",
-          "memo": "테스트 일정",
-          "priority": 0,
-          "category": "기타",
-          "date": "2025-12-06"
-        },
-        {
-          "title": "심프 과제 마감",
-          "time": "23:50",
-          "memo": "",
-          "priority": 1,
-          "category": "과제",
-          "date": "2025-12-07"
-        },
-        {
-          "title": "DB 프로젝트 제출",
-          "time": "23:59",
-          "memo": "업로드 잊지 말기",
-          "priority": 2,
-          "category": "과제",
-          "date": "2025-12-15"
-        },
-        {
-          "title": "연말 회고",
-          "time": "15:00",
-          "memo": "올해 돌아보기",
-          "priority": 0,
-          "category": "개인",
-          "date": "2025-12-28"
-        },
-        {
-          "title": "새해 계획 작성",
-          "time": "17:00",
-          "memo": "",
-          "priority": 0,
-          "category": "개인",
-          "date": "2025-12-28"
         }
-      ],
-      "ai_comment": ""
+      ]
     }
-  },
-  "triggers": {
-    "daily": {},
-    "weekly": {},
-    "monthly": {}
   }
 }
